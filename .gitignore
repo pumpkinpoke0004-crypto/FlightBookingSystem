@@ -1,0 +1,6 @@
+/build/
+/target/
+/data/*.tsv
+*.log
+.DS_Store
+Thumbs.db

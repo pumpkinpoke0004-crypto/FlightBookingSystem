@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#172554">
+  <title>FlightDesk | Flight Booking System</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="/assets/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#overview" data-view="overview" aria-label="FlightDesk home">
+        <span class="brand-mark">✈</span>
+        <span><strong>FlightDesk</strong><small>BOOKING CONSOLE</small></span>
+      </a>
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="main-nav">
+        <button class="nav-link active" type="button" data-view="overview"><span class="nav-icon">▦</span> Overview</button>
+        <button class="nav-link" type="button" data-view="flights"><span class="nav-icon">⌕</span> Flight search <span class="nav-step">01</span></button>
+        <button class="nav-link" type="button" data-view="passengers"><span class="nav-icon">♙</span> Passengers <span class="nav-step">02</span></button>
+        <button class="nav-link" type="button" data-view="bookings"><span class="nav-icon">▤</span> Bookings & tickets <span class="nav-step">03</span></button>
+        <button class="nav-link" type="button" data-view="payments"><span class="nav-icon">◈</span> Payments & refunds <span class="nav-step">04</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="demo-note"><span class="live-dot"></span><div><strong>Demo environment</strong><small>Simulated data & payments</small></div></div>
+        <div class="sidebar-footer">FlightDesk · Student project<br><span>Local-only demonstration</span></div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark">✈</span><strong>FlightDesk</strong></div>
+        <div class="breadcrumb"><span>Workspace</span><span class="crumb-slash">/</span><strong id="page-name">Overview</strong></div>
+        <div class="topbar-right"><span class="today-pill" id="today-label">Today</span><span class="avatar">A</span><div class="user-label"><strong>Agency Admin</strong><small>Administrator</small></div></div>
+      </header>
+      <section class="page-content" id="app-view" aria-live="polite">
+        <div class="loading-state"><div class="spinner"></div><p>Preparing your workspace…</p></div>
+      </section>
+      <footer class="main-footer"><span>FlightDesk Flight Booking System</span><span>Prototype · No live payments or airline connections</span></footer>
+    </main>
+  </div>
+
+  <dialog id="booking-dialog" class="dialog-card">
+    <form id="booking-form">
+      <div class="dialog-header"><div><span class="eyebrow">NEW RESERVATION</span><h2>Complete your booking</h2><p class="muted">Choose a passenger to reserve this flight.</p></div><button class="icon-button" type="button" data-close-dialog="booking-dialog" aria-label="Close">×</button></div>
+      <div id="booking-flight-summary" class="booking-flight-summary"></div>
+      <input type="hidden" name="flightId" id="booking-flight-id">
+      <label class="field-label" for="booking-passenger">Passenger <span class="required">*</span></label>
+      <select id="booking-passenger" name="passengerId" required><option value="">Select passenger</option></select>
+      <div id="booking-empty-passengers" class="inline-help hidden">No passenger records yet. Add a passenger first from the Passengers module.<br><button class="text-button" type="button" id="add-passenger-from-booking">Open passenger manager →</button></div>
+      <div class="dialog-actions"><button class="button button-secondary" type="button" data-close-dialog="booking-dialog">Cancel</button><button class="button button-primary" type="submit" id="create-booking-button">Create booking <span>→</span></button></div>
+    </form>
+  </dialog>
+
+  <dialog id="ticket-dialog" class="dialog-card ticket-dialog">
+    <div class="dialog-header ticket-dialog-header"><div><span class="eyebrow">FLIGHTDESK · E-TICKET</span><h2>Booking details</h2></div><button class="icon-button no-print" type="button" data-close-dialog="ticket-dialog" aria-label="Close">×</button></div>
+    <div id="ticket-content"></div>
+    <div class="dialog-actions no-print"><button class="button button-secondary" type="button" data-close-dialog="ticket-dialog">Close</button><button class="button button-primary" type="button" id="print-ticket-button">Print ticket ↗</button></div>
+  </dialog>
+
+  <div class="toast-region" id="toast-region" role="status" aria-live="polite"></div>
+</body>
+</html>
